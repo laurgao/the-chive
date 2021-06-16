@@ -12,41 +12,74 @@ import { fetcher } from "../utils/utils";
 import { format } from "date-fns"
 import Skeleton from "react-loading-skeleton";
 import UpSEO from "../components/UpSeo";
+import Quote from "../components/Quote";
 
 export default function PublicPost(props: {
     postUrlName: string,
 }) {
     const postUrlName = props.postUrlName;
     const [isNews, setIsNews] = useState<boolean>(postUrlName.split("-")[0] == "news");
+    const [isCriticalTheory, setIsCriticalTheory] = useState<boolean>(postUrlName.split("-")[0] == "critical");
     const {data: fakePost, error: fakePostError}: SWRResponse<{ data: DatedObj<PostObj>[] }, any> = useSWR(`/api/fakepost?urlName=${postUrlName}`, fetcher);
     const thisPost = fakePost ? fakePost.data[0] : null
-
+    console.log(thisPost)
     return (
         <div className="max-w-2xl mx-auto px-4">
             {thisPost ? <UpSEO title={thisPost.title} description={thisPost.subtitle || ""}/>  : <UpSEO/> }
             <InlineButton href="/home" className="mb-6"><><FaArrowLeft />Back to Home</></InlineButton>
-            {isNews && thisPost ? (
+            {thisPost ? ( isNews  ? (
                 <article>
                     {/* <pre>{thisPost.body}</pre> */}
                     <H1 className="mb-6">{thisPost.title}</H1>
-                    <Byline author={thisPost.author} date={format (new Date(thisPost.date), 'MMM dd yyyy')} readingTime={readingTime(thisPost.body).text}/>
-                    <p className="mb-3">VANCOUVER — After Tornado Snyders destroyed 12 lives and many homes yesterday, a response team consisting of paramedics, search and rescue, and dozens of grief counsellors were brought to the victims who lost loved ones and property, which led to criticism about the necessity of grief counselling to arise.</p>
-                    <p className="mb-3">Amongst these victims are 65 year old Dennis Chuvern, who was described as “inconsolable” after seeing his property flattened. “I had lived here for 65 years,” he tells his grief counsellor, “Life is unfair, how could fate do this to me?”
-                    </p>
+                    <Byline author={thisPost.author} date={format (new Date(thisPost.date), 'MMM dd yyyy')} readingTime={readingTime(thisPost.body + thisPost.body2).text}/>
+                    <pre>{thisPost.body}</pre>
 
                     <Figure 
                         imgUrl={thisPost.img && thisPost.img}
-                        caption="A church 40 miles away from where Tornado Snyders struck saw some uprooted pianos and damange. “Tornado Snyders is a powerful one!” local authorities said."
+                        caption={thisPost.caption}
                     />
 
-                    <p>Not 2 hours passed before this received backlash. "One study on the efficacy of grief counselling examined parents whose children who had died of SIDS, and the parents who consciously tried to work though their loss in accordance to the principles of grief theory were experiencing more distress than the parents who did not, 3 weeks and even 18 months later," Philosopher William B. Irvine says. For this reason, Irvine is a proponent for people to work through grief on their own, through practices such as Stoic self-therapy.
-</p>
-                    <p>However, authorities are adamant on continuing with the process, citing political correctness as a driving factor. "It is widely believed in modern psychology that when one has mental health issues, they should see a therapist," says Andrea Hourren, who is leading the Toronado Snyders response team, "We cannot risk the backlash from leftists and politically correctness which the world should center around had we not taken this measure."</p>
+                    <pre>{thisPost.body2}</pre>
+                </article>
+            ) : isCriticalTheory && postUrlName == "critical-theory-from-bronx-to-cornell-2021-06-16" ? 
+                <article>
+                    <H1 className="mb-6">{thisPost.title}</H1>
+                    <Byline author={thisPost.author} date={format (new Date(thisPost.date), 'MMM dd yyyy')} readingTime={readingTime(thisPost.body).text}/>
+                    <pre>{thisPost.body}</pre>
+                    <Figure imgUrl="/Panel-the-first.png" alt="Panel 1"/>
+                    <Quote>"In my experience, people who reside within socio-economic shtetl-tags like "slum,"
+"gheCo," "housing project," "inner-city" or even "blue collar" mainly don't think of
+themselves as living in that par9cular cubbyhole; they see themselves as living in the
+world, since most everybody they associate with also calls that corner of it home, and
+chronically cash-strapped people tend not to travel all that much."</Quote>
+                    <p>Richard Price grew up in Parkside Houses, Bronx, with a somewhat pedestrian lifestyle. In his essay "From the Bronx to Cornell", a critique of class differences, backround information about his own upbringing sets the scene for the rest of the essay. In his own hometown, ideas of what class he belonged to didn't even enter his brain as everyone else he interacted with were in the same class as him. </p>
 
-                    <p>Others validate this claim. "My team and I have worked so hard to bring mental health as an acceptable topic to discuss publically," self-described leftist activist Lacey Giang says, "bringing grief counsellors to victims, whether it’s scientifically backed or not, iis going back on decades of social progress."</p>
 
-                    <p>Regardless of which side you take, one thing for sure is that entering the mental health counselling field will only become a more profitable practice in upcoming years as the number of reported mental health crises continues to be on the rise.
-</p>
+                    <Figure imgUrl="/Panel-the-second.png" alt="Panel 2" />
+                    <Quote>"In most cases people have to physically leave the village, turn around and look back to
+see where they came from before they can recognize not only its borders, both visible
+and invisible, but its very existence. For me, that started to come about in the fall of
+1967, when I leL Parkside Houses in the Bronx for college, or as someone's
+grandmother once called it, "sleep away school." "</Quote>
+                    <p>Arriving at Cornell was a big change for Richard - as he says, "my world was instantaneously turned on its head". The new lifestyle and people he encountered brought visibility to the concpet of class that he was blind to back in his own home.  It was only after leaving his hometown, stepping into a circle of people not like himself that he realy understand "that the world was, in fact, the WORLD." As he absorbs his new world, Richard realizes that the world of classes isn't black and white with clear segregation, that "it was not just a compound of two-dozen city-owned high-rises surrounded by asphalt-shingled or Formstone two-family houses."</p>
+                    
+                    <Figure imgUrl="/Panel-the-third.png" alt="Panel 3" />
+                    <Quote>"One of the stranger effects of my fascina9on and hyperawareness of our differences was to semiconsciously cul9vate an exo9cness about myself, probably as an egosurvival countermeasure against what I perceived as the genuine exo9cness of everybody else."</Quote>
+
+                    <p>The more he sees, the more he realizes things he was blind to in the past that initially confused Robert, as he notes, "Rumpled, apparently, was a look, not a sin." Not just that - Cornell also brought an exoticness about the people he interacted with. In fact, the people he encounterd was so different from his past environment that as time went on, Richard grew a sense of "semiconsciously cul9vate an exo9cness about myself". He adopts a strong Bronxian accent that he didn't have beofre, and begins to make up stories about his dull upbringing, "some apocryphal, some with just a liCle narra9ve topspin to 9dy up the endings."  </p>
+
+                    <Figure imgUrl="/Panel-the-fourth.png" alt="Panel 4" />
+                    <Quote>"You went to Cornell, right?" </Quote><Quote>"Yeah, I guess."</Quote>
+
+<Quote>""That's amazing," he said, me trying not to grin. "Because my daughter? She goes to Bronx Community College, and she speaks beCer freakin' English than you."</Quote>
+                    <p>This stayed with him even after graduation. He wrote books about his own upbringing, going on book tours as an author. 10 years after first arriving at Cornell, in 1977, he encounters another Bronxian man, and has the depicted dialogue exchange with him. To Price, Bronx and Cornell depict two contradicting worlds that makes up who he is. He spent the previous 10 years escaping the "proletariat" and entering this higher class of Cornell. Yet, this conversation is symbolic of an encounter with his previous self and his old life, the other half of who he is and used to be. He relizes that his old life actualy wasn't so bad, that he came all the way here to try to achieve cornell and what was it all for? Also, with the reference to English is probably a reference to his Bronxian accent. That by leaving Bronx, he adopted a stronger Bronxian accent than the man's daughter who stayed. By leaving Bronx, he only developed a stronger rope that ties him to his hometown. One cannot get rid of your roots no matter how hard you try to escape.</p>
+
+                </article>
+            : 
+                <article>
+                    <H1 className="mb-6">{thisPost.title}</H1>
+                    <Byline author={thisPost.author} date={format (new Date(thisPost.date), 'MMM dd yyyy')} readingTime={readingTime(thisPost.body).text}/>
+                    <pre>{thisPost.body}</pre>
                 </article>
             ) : <>
                 <Skeleton height={50} className="mb-6"/>

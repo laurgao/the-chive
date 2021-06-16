@@ -20,14 +20,14 @@ export default function PostItemCard({post, randomNumberZeroToTwo = 2}: {post: D
                 <a>
                     <div className={`flex ${orientation}`}>
                         {post.img && <div >
-                            <img src={post.img} className={`${orientation == "flex-col" ? "w-full" : "md:max-w-xs"} ${randomNumberZeroToTwo == 0 ? "mr-10" : randomNumberZeroToTwo == 1 && "ml-10"}`}/>
+                            <img src={post.img} className={`border-left border-color-black ${orientation == "flex-col" ? "w-full" : "md:max-w-xs"} ${randomNumberZeroToTwo == 0 ? "mr-10" : randomNumberZeroToTwo == 1 && "ml-10"}`}/>
                         </div>}
                         <div className="mt-6 text-sm">
                         <p className="font-bold text-sm uppercase btm-gray-400">{post.type ? post.type : "Post"}</p>
                         
                             <H2 className="font-medium my-2 content">{ellipsize(post.title, 70)}</H2>
                                 
-                            <p className="btm-gray-400">{readingTime(post.body).text}</p>
+                            <p className="btm-gray-400">{readingTime(post.body + post.body2 || post.body).text}</p>
                             <p className="btm-gray-500">
                                 {format(new Date(post.createdAt || post.date), "MMM dd yyyy")}
                             </p>
