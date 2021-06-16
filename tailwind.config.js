@@ -9,6 +9,11 @@ module.exports = {
             padding: "1rem",
         },
     },
-    variants: {},
+    variants: {
+        extend: {
+          opacity: ['disabled'],
+          cursor: ['disabled'],
+        },
+      },
     plugins: [],
 }
