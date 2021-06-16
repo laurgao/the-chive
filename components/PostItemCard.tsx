@@ -14,7 +14,7 @@ export default function PostItemCard({post, randomNumberZeroToTwo = 2}: {post: D
         randomNumberZeroToTwo == 0 ? "flex-row" : 
         randomNumberZeroToTwo == 1 ? "flex-row-reverse" : "flex-col"
     );
-    const [isPostulate, setIsPostulate] = useState<boolean>(post.urlName.substr(0, 2) == "202" )
+    const [isPostulate, setIsPostulate] = useState<boolean>(post.urlName.substr(0, 3) == "202" )
     return (
         <div className={`${orientation == "flex-col" ? `${/*md:*/"max-w-30"}` : "flex-grow"} border border-transparent hover:border-gray-200 rounded-lg p-4 transition`}>
             <Link href={post.urlName.substr(0, 5) == "https"  ? post.urlName : isPostulate ? `https://postulate.us/@laura/p/${post.urlName}` : `/${post.urlName}`}>
