@@ -15,12 +15,13 @@ const home = () => {
         <div className="max-w-5xl mx-auto px-4">
             <UpSEO />
             <div className="md:flex flex-wrap gap-6">
-                {posts && posts.posts && posts.posts.map(post => (
-                    <PostItemCard post={post}/>
-                ))}
                 {fakePost && fakePost.data ? fakePost.data.map((post, index) => (
                     <PostItemCard post={post} key={index} randomNumberZeroToTwo={index % 5}/>
                 )) : <Skeleton />}
+                
+                {posts && posts.posts && posts.posts.map(post => (
+                    <PostItemCard post={post}/>
+                ))}
             </div>
         </div>
     )

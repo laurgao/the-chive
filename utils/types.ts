@@ -10,6 +10,7 @@ export interface PostObj {
     type?: "News"|"Entertainment"|"Science"|"Tech"|"Life",
     subtitle?: string,
     caption?: string,
+    projectArr?: {name: String}[],
 }
 
 export type DatedObj<T extends {}> = T & {
