@@ -13,15 +13,7 @@ const Navbar = () => {
             <div className="max-w-7xl h-16 flex items-center mr-auto my-auto">
                 <Link href={"/home"}><a><p className="text-2xl font-bold">The Chive</p></a></Link>
             </div>
-            {/* <div className="flex flex-row">
-                <Link href="/entertainment">
-                    <a className="hidden md:flex items-center opacity-50 hover:opacity-100 mr-10">
-                        <div className="mr-3 -mt-1">
-                            <BsLightning/>
-                        </div>
-                        Entertainment
-                    </a>
-                </Link>
+            <div className="flex flex-row">
                 <Link href="/news">
                     <a className="hidden md:flex items-center opacity-50 hover:opacity-100 mr-10">
                         <div className="mr-3 -mt-1">
@@ -30,7 +22,16 @@ const Navbar = () => {
                         News
                     </a>
                 </Link>
-                <Link href="/science">
+                <Link href="/social">
+                    <a className="hidden md:flex items-center opacity-50 hover:opacity-100 mr-10">
+                        <div className="mr-3 -mt-1">
+                            <BsLightning/>
+                        </div>
+                        Social
+                    </a>
+                </Link>
+
+                {/* <Link href="/science">
                     <a className="hidden md:flex items-center opacity-50 hover:opacity-100 mr-10">
                         <div className="mr-3 -mt-1">
                             <FiSearch/>
@@ -53,8 +54,8 @@ const Navbar = () => {
                         </div>
                         About
                     </a>
-                </Link>
-            </div> */}
+                </Link>*/}
+            </div> 
             {/* {session ? ( 
                 <>
                     <MoreMenu

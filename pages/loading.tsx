@@ -4,7 +4,14 @@ import Particles from 'react-particles-js';
 import { GetServerSideProps } from "next";
 
 
-export default function Home() {
+export default function Loading() {
+  let foo = null;
+  if (typeof window !== "undefined") {
+    foo = window.localStorage.getItem("foo");
+  }
+  setTimeout(function(){
+    window.location.href = '/home';
+  }, 3000);
 
   return (
     <div className="bg-gray-800 overflow-hidden text-white w-screen h-screen inset-0 absolute z-40 flex items-center ">
@@ -50,16 +57,11 @@ export default function Home() {
     </div>
   )
 }
-// export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  
+  
 //   await setTimeout(function(){ console.log("moving on"); }, 3000);
+  return {props: {}};
 
-//   return {redirect: {permanent: false, destination: "/home",}};
-// };
-
-let foo = null;
-if (typeof window !== "undefined") {
-  foo = window.localStorage.getItem("foo");
-}
-setTimeout(function(){
-  window.location.href = '/home';
-}, 3000);
+  //return {redirect: {permanent: false, destination: "/home",}};
+};

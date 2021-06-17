@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             
             try {                
                 let thisPost: PostObj[] = [];
-                if (req.query.postName == "all" || req.query.urlName == "news-grief-counsellors-face-backlash-2021-06-10") {
+                if (req.query.postName == "all" || req.query.postName == "news" || req.query.urlName == "news-grief-counsellors-face-backlash-2021-06-10") {
                     thisPost.push({
                         date: new Date("June 10, 2021").toString(),
                         title: "Grief Counsellors Face Backlash After Tornado Snyders",
@@ -35,7 +35,7 @@ Regardless of which side you take, one thing for sure is that entering the menta
                         caption: "A church 40 miles away from where Tornado Snyders struck saw some uprooted pianos and damange. “Tornado Snyders is a powerful one!” local authorities said.",
                     })
                 }
-                if (req.query.postName == "all" || req.query.urlName == "news-sophomore-caught-plagiarizing-2021-06-11") {
+                if (req.query.postName == "all" || req.query.postName == "news" || req.query.urlName == "news-sophomore-caught-plagiarizing-2021-06-11") {
                     thisPost.push({
                         date: new Date("June 11, 2021").toString(),
                         title: "Sophomore Caught Plagiarizing Tells Reporters She 'Doesn’t Believe Plagiarism is Wrong'",
@@ -60,7 +60,7 @@ Teens like Sherman are part of a larger trend of young people who have been sile
                         caption: "Judy Sherman and her team after earning first place in a state-wide math olympiad.",
                     })
                 }
-                if (req.query.postName == "all" || req.query.urlName == "critical-theory-change-is-best-achieved-through-gradients-2021-06-16") {
+                if (req.query.postName == "all" || req.query.postName == "social" || req.query.urlName == "critical-theory-change-is-best-achieved-through-gradients-2021-06-16") {
                     thisPost.push({
                         date: new Date("June 16, 2021").toString(),
                         title: "Change is best achieved through gradients",
@@ -93,7 +93,7 @@ Relentlessly pursue and optimize for the small things in success. And do the sam
                         type: "Life"
                     })
                 }
-                if (req.query.postName == "all" || req.query.urlName=="critical-theory-from-bronx-to-cornell-2021-06-16") {
+                if (req.query.postName == "all" || req.query.postName == "social" || req.query.urlName=="critical-theory-from-bronx-to-cornell-2021-06-16") {
                     thisPost.push({
                         date: new Date("June 16, 2021").toString(),
                         title: `Analysis of "From Bronx to Cornell" by Richard Price`,

@@ -4,7 +4,6 @@ import SecondaryButton from "../components/SecondaryButton";
 import { FaArrowRight } from "react-icons/fa"
 import Particles from 'react-particles-js';
 
-
 export default function Home() {
   return (
     <div className="bg-gray-800 overflow-hidden text-white w-screen h-screen inset-0 absolute z-40 flex items-center ">
