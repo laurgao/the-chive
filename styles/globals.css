@@ -54,6 +54,10 @@ a {
   max-width: calc((100% - 48px) / 3); /* 48 because gap-6 is 1.5rem = 24px */
 }
 
+.max-w-60 {
+  max-width: calc(((100% - 48px) / 3) * 2 + 24px); 
+}
+
 .btm-gray-200-border {
   border-color: #E4E4E7;
 }

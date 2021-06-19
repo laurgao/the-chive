@@ -11,6 +11,7 @@ export interface PostObj {
     subtitle?: string,
     caption?: string,
     projectArr?: {name: String}[],
+    slateBody?: {type: "p"|"img", url:string}[]
 }
 
 export type DatedObj<T extends {}> = T & {

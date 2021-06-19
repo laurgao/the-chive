@@ -14,13 +14,20 @@ const home = () => {
     return (
         <div className="max-w-5xl mx-auto px-4">
             <UpSEO />
-            <div className="md:flex flex-wrap gap-6">
-                {(fakePost && fakePost.data) ? fakePost.data.map((post, index) => (
-                    <PostItemCard post={post} key={index} randomNumberZeroToTwo={index % 5}/>
-                )) : <div className="w-full"><Skeleton height={200}/></div>}
+            <div className="md:flex flex-wrap gap-6 items-start justify-items-start">
+                {(fakePost && fakePost.data) ? (
+                    <>
+                    <PostItemCard post={fakePost.data[0]} wide={true}/>
+                    <PostItemCard post={fakePost.data[1]}/>
+                    <PostItemCard post={fakePost.data[2]}/>
+                    <PostItemCard post={fakePost.data[3]} wide={true}/>
+                    {fakePost.data.slice(4, fakePost.data.length-1).map((post, index) => (
+                    <PostItemCard post={post} key={index} randomNumberZeroToTwo={(index + 2) % 5}/>
+                ))}</>
+                ) : <div className="w-full"><Skeleton height={200}/></div>}
                 
-                {(posts && posts.posts) ? posts.posts.map(post => (
-                    <PostItemCard post={post}/>
+                {(posts && posts.posts) ? posts.posts.map((post, index) => (
+                    <PostItemCard post={post} key={post._id} randomNumberZeroToTwo={(index) % 5}/>
                 )) : <div className="w-full"><Skeleton height={200}/></div>}
             </div>
         </div>

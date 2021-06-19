@@ -18,16 +18,22 @@ export default function PublicPost(props: {
     postUrlName: string,
 }) {
     const postUrlName = props.postUrlName;
-    const [isNews, setIsNews] = useState<boolean>(postUrlName.split("-")[0] == "news");
-    const [isCriticalTheory, setIsCriticalTheory] = useState<boolean>(postUrlName.split("-")[0] == "critical");
+    const [type, setType] = useState<"news"|"social"|"home">(
+        postUrlName.split("-")[0] == "critical" ? "social" : 
+        postUrlName.split("-")[0] == "news" ? "news" : "home"
+    );
     const {data: fakePost, error: fakePostError}: SWRResponse<{ data: DatedObj<PostObj>[] }, any> = useSWR(`/api/fakepost?urlName=${postUrlName}`, fetcher);
     const thisPost = fakePost ? fakePost.data[0] : null
     console.log(thisPost)
     return (
         <div className="max-w-2xl mx-auto px-4">
             {thisPost ? <UpSEO title={thisPost.title} description={thisPost.subtitle || ""}/>  : <UpSEO/> }
-            <InlineButton href="/home" className="mb-6"><><FaArrowLeft />Back to Home</></InlineButton>
-            {thisPost ? ( isNews  ? (
+            <InlineButton 
+                href={`/${type}`} className="mb-6"
+            >
+                <><FaArrowLeft />Back to {type}</>
+            </InlineButton>
+            {thisPost ? ( type=="news"  ? (
                 <article>
                     {/* <pre>{thisPost.body}</pre> */}
                     <H1 className="mb-6">{thisPost.title}</H1>
@@ -41,7 +47,7 @@ export default function PublicPost(props: {
 
                     <pre>{thisPost.body2}</pre>
                 </article>
-            ) : isCriticalTheory && postUrlName == "critical-theory-from-bronx-to-cornell-2021-06-16" ? 
+            ) : type=="social" && postUrlName == "critical-theory-from-bronx-to-cornell-2021-06-16" ? 
                 <article>
                     <H1 className="mb-6">{thisPost.title}</H1>
                     <Byline author={thisPost.author} date={format (new Date(thisPost.date), 'MMM dd yyyy')} readingTime={readingTime(thisPost.body).text}/>

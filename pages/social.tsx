@@ -1,6 +1,8 @@
+import { FaArrowLeft } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
 import useSWR, { SWRResponse } from "swr";
 import H1 from "../components/H1";
+import InlineButton from "../components/InlineButton";
 import PostItemCard from "../components/PostItemCard";
 import UpSEO from "../components/UpSeo";
 import { DatedObj, PostObj } from "../utils/types";
@@ -12,8 +14,10 @@ const news = () => {
     return (
         <div className="max-w-5xl mx-auto px-4">
             <UpSEO title="Social" />
-            <H1>Social</H1>
-            <p>The Onion may be America's finest news source, but The Chive is Canada's.</p>
+            <InlineButton href="/home" className="mb-6"><><FaArrowLeft />Back to Home</></InlineButton>
+            <div className="text-center mb-8">
+                <H1>Canada's Finest Critical Theory</H1>
+            </div>
             <div className="md:flex flex-wrap gap-6">
                 {(fakePost && fakePost.data) ? fakePost.data.map((post, index) => (
                     <PostItemCard post={post} key={index} randomNumberZeroToTwo={index % 5}/>
