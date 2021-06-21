@@ -1,10 +1,13 @@
 import { format } from "date-fns"
+import { FaArrowLeft } from "react-icons/fa";
 import useSWR, { SWRResponse } from "swr";
 import Byline from "../components/Byline"
 import H1 from "../components/H1"
 import H2 from "../components/H2";
+import InlineButton from "../components/InlineButton";
 import Linebreak from "../components/Linebreak";
 import PostItemCard from "../components/PostItemCard";
+import UpSEO from "../components/UpSeo";
 import { DatedObj, PostObj } from "../utils/types";
 import { fetcher } from "../utils/utils";
 
@@ -13,6 +16,9 @@ const worksCited = () => {
 
     return (
         <div className="max-w-2xl mx-auto px-4">
+            <UpSEO title="Works Cited"/>
+            <InlineButton href="/home" className="mb-6"><><FaArrowLeft />Back to Home</></InlineButton>
+
             <article>
             <H1 className="mb-6">Works Cited</H1>
                         <Byline author={"Laura Gao"} date={format (new Date("June 21 2021"), 'MMM dd yyyy')} readingTime={"1 min read"}/>

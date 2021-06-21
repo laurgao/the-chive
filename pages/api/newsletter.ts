@@ -5,6 +5,20 @@ import {NextApiRequest, NextApiResponse} from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     switch (req.method) {    
+
+        case "GET": {
+            
+            try {                
+                await dbConnect();
+
+                const allSubscribers = await NewsletterModel.find();
+                if (!allSubscribers || !allSubscribers.length) return res.status(404).json({data: []});
+                
+                return res.status(200).json({data: allSubscribers});
+            } catch (e) {
+                return res.status(500).json({message: e});                        
+            }
+        }
             
         case "POST": {
             

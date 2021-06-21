@@ -41,7 +41,7 @@ Regardless of which side you take, one thing for sure is that entering the menta
                         title: "Sophomore Caught Plagiarizing Tells Reporters She 'Doesn’t Believe Plagiarism is Wrong'",
                         author: "Britney Woolf",
                         urlName: "news-sophomore-caught-plagiarizing-2021-06-11",
-                        body: `EDMONTON — After being caught plagiarizing an English assignment, 16-year-old x high school sophomore Judy Sherman told reporters she doesn’t believe that plagiarism is wrong.
+                        body: `EDMONTON — After being caught plagiarizing an English assignment, 16-year-old Noter Shore High School sophomore Judy Sherman told reporters she doesn’t believe that plagiarism is wrong.
 
 Her teacher, Mr. Wang, tells us that the assignment was meant for students to write their own news article, making up content and adding their own quotations. “By copying what other people said on the internet,” Wang tells us, “she is passing others' work as her own.”
 
