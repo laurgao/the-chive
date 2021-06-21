@@ -41,6 +41,10 @@ export default function PublicPost(props: {
         extensions: [showdownHtmlEscape],
     });
 
+    function resizeIframe(obj) {
+        if (obj) obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+      }
+
     return (
         <div className="max-w-2xl mx-auto px-4">
             {thisPost ? <UpSEO title={thisPost.title} description={thisPost.subtitle || ""} imgUrl={thisPost.img || ""}/>  : <UpSEO/> }
@@ -90,9 +94,14 @@ export default function PublicPost(props: {
                         <Quote>"That's amazing," he said, me trying not to grin. "Because my daughter? She goes to Bronx Community College, and she speaks beCer freakin' English than you."</Quote>
                         <p>After graduation, he continued with this. In fact, he took his narrative-spinning even further – he wrote books about his own upbringing, going on book tours as an author. On one such book tour in 1997, 10 years after first arriving at Cornell, he encounters another Bronxian man, and has the depicted dialogue exchange with him. To Price, Bronx and Cornell depict two contradicting worlds – one proletariat, the other bourgeoisie – that make up two halves of his class identity. This conversation is symbolic of an encounter with his old life. One can only guess at what this encounter means to him - maybe he realizes that his old class conditions actually wasn't so bad, that he came all the way to Cornell to live a higher-class life and what was it all for? Maybe the man’s reference to English is a reference to Price’s Bronxian accent - by leaving Bronx, he adopted a stronger Bronxian accent than the man's daughter who stayed. By leaving Bronx, he only developed a stronger rope that ties him to his hometown. One cannot get rid of his roots no matter how hard he tries to escape.</p>
                         </>
-                    ): 
+                    ) : type=="social" && postUrlName == "critical-theory-change-is-best-achieved-through-gradients-2021-06-16" ? (
+                        <>
                             <div>{Parser(markdownConverter.makeHtml(thisPost.body))}</div>
-                    )}
+                            <div className="max-width-2xl mt-10"><div style={{position:"relative", height:0, paddingBottom:"56.25%"}}><iframe src="https://embed.ted.com/talks/lang/en/courtney_e_martin_this_isn_t_her_mother_s_feminism" width="854" height="480" style={{position: "absolute", left:0, top:0, width:"100%", height:"100%"}} frameBorder="0" scrolling="no" allowFullScreen></iframe></div></div>
+                        </>
+                    ) : (
+                        <><pre>{thisPost.body}</pre></>
+                    ))}
                 </article>
 
                 <Linebreak />

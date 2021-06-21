@@ -29,7 +29,7 @@ const worksCited = () => {
     <br/><br/>
     Price, Richard. “From the Bronx to Cornell.” The New York Times, The New York Times, 12 June 2005, www.nytimes.com/2005/06/12/national/class/from-the-bronx-to-cornell.html.
     <br/><br/>
-    “Synex Medical.” Synex Medical, https://synexmedical.com/assets/images/magneticfield.png. Accessed 21 June 21, 2021
+    “Synex Medical.” Synex Medical, https://synexmedical.com/assets/images/magneticfield.png. Accessed 21 June, 2021
     </p>
             </article>
 
