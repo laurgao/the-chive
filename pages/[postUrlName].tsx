@@ -104,8 +104,8 @@ export default function PublicPost(props: {
                             </div>
                         </>
                     )}
-                    <div>
-                        <p>If you enjoyed this article, your enjoyment is attributed to the giants I stood on. Check them out:</p>
+                    <div className="mt-8 w-full text-center">
+                        <p className="mb-4">If you enjoyed this article, your enjoyment is attributed to the giants I stood on. Check them out:</p>
                         <PrimaryButton className="mx-auto" href="/works-cited">Works Cited</PrimaryButton>
                     </div>
                 </div>
