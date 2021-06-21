@@ -103,7 +103,7 @@ Relentlessly pursue and optimize for the small things when trying to find person
                         title: `Analysis of "From Bronx to Cornell" by Richard Price`,
                         author: "Laura Gao",
                         urlName: "critical-theory-from-bronx-to-cornell-2021-06-16",
-                        body: `"In my experience, people who reside within socio-economic shtetl-tags like "slum," "gheCo," "housing project," "inner-city" or even "blue collar" mainly don't think of themselves as living in that par9cular cubbyhole; they see themselves as living in the world, since most everybody they associate with also calls that corner of it home, and chronically cash-strapped people tend not to travel all that much."
+                        body: `"In my experience, people who reside within socio-economic shtetl-tags like "slum," "ghetto," "housing project," "inner-city" or even "blue collar" mainly don't think of themselves as living in that particular cubbyhole; they see themselves as living in the world, since most everybody they associate with also calls that corner of it home, and chronically cash-strapped people tend not to travel all that much.
 
                         Richard Price grew up in Parkside Houses, Bronx, with a somewhat pedestrian lifestyle. In his essay "From the Bronx to Cornell", a critique of class differences, backround information about his own upbringing sets the scene for the rest of the essay. In his own hometown, ideas of what class he belonged to didn't even enter his brain as everyone else he interacted with were in the same class as him.
                         

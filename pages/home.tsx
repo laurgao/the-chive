@@ -68,12 +68,12 @@ const home = () => {
         <div className="w-full bg-primary my-16 text-white" id="newsletter">
             <div className={containerClasses}>
                 <div className="md:flex items-center">
-                    <h2 className="flex-shrink-0 mr-8 mb-4 md:mb-0"><b>Like what you see?</b><br/>Sign up for my monthly email list.</h2>
+                    <h2 className="flex-shrink-0 mr-8 mb-4 md:mb-0"><b>Like what you see?</b><br/>Sign up for my monthly email list.<br/><p className="mt-2 text-sm opacity-70">Or, you can <a className="underline transition theme-hover" href="/news#newsletter">read it first.</a></p></h2>
                     {submitted ? (
                         <div className="ml-auto">
                             <p>
                                 You have successfully subscribed {submitted.email}. Thank you for signing up 😁<br/>
-                                Check out past issues <a href="/news#newsletter">here</a>.
+                                Check out past issues <a className="underline transition theme-hover" href="/news#newsletter">here</a>.
                             </p>
                         </div>
                     ) : (

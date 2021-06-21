@@ -33,6 +33,7 @@ const news = () => {
                     <PostItemCard post={post} key={index} wide="half"/>
                 )) : <div className="w-full"><Skeleton height={200}/></div>}
             </div>
+            
             <Linebreak />
             <H2 className="text-center my-16">More articles about social sciences</H2>
             <div className="md:flex flex-wrap gap-6">

@@ -24,6 +24,14 @@ export interface AccountObj {
     image: string,
 }
 
+export interface NewsObj {
+    title: string; 
+    description: string; 
+    img: string; 
+    month: string; 
+    urlName: string; 
+}
+
 export type DatedObj<T extends {}> = T & {
     _id?: string,
     createdAt?: string, // ISO date

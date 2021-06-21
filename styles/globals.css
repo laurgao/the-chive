@@ -57,6 +57,10 @@ a {
     background-color: #006b3a;
 }
 
+.theme-hover:hover {
+    color: #006b3a;
+}
+
 .btm-gray-400 {
     color: #A1A1AA;
 }
@@ -73,21 +77,20 @@ a {
     background-color: #3F3F46;
 }
 
-.max-w-30 {
-    max-width: calc((100% - 48px) / 3);
-    /* 48 because gap-6 is 1.5rem = 24px */
-}
-
-.ch-w-30 {
-    width: calc((100% - 48px) / 3);
-}
-
-.max-w-40 {
-    max-width: calc((100% - 24px) / 2);
-}
-
-.max-w-60 {
-    max-width: calc(((100% - 48px) / 3) * 2 + 24px);
+@responsive {
+    .max-w-30 {
+        max-width: calc((100% - 48px) / 3);
+        /* 48 because gap-6 is 1.5rem = 24px */
+    }
+    .ch-w-30 {
+        width: calc((100% - 48px) / 3);
+    }
+    .max-w-40 {
+        max-width: calc((100% - 24px) / 2);
+    }
+    .max-w-60 {
+        max-width: calc(((100% - 48px) / 3) * 2 + 24px);
+    }
 }
 
 .btm-gray-200-border {
