@@ -28,7 +28,7 @@ const news = () => {
                 <H1>Canada's Finest Critical Theory</H1>
                 <p className="mt-4">"What is critical theory?" you may ask. If you don't know, don't waste one second fearing that you'll be the only one in your friend group stupid enough to not know this term, as we got you covered. Read <a href="" className="underline transition hover:theme">The Chive's guide to critical theory.</a></p>
             </div>
-            <div className="md:flex flex-wrap gap-6">
+            <div className="md:flex flex-wrap gap-x-6 gap-y-10 ">
                 {(fakePost && fakePost.data) ? fakePost.data.map((post, index) => (
                     <PostItemCard post={post} key={index} wide="half"/>
                 )) : <div className="w-full"><Skeleton height={200}/></div>}
@@ -36,7 +36,7 @@ const news = () => {
             
             <Linebreak />
             <H2 className="text-center my-16">More articles about social sciences</H2>
-            <div className="md:flex flex-wrap gap-6">
+            <div className="md:flex flex-wrap gap-x-6 gap-y-10 ">
                 {(posts && posts.posts) ? posts.posts.map((post, index) => (
                     <>
                     <PostItemCard post={post} key={index}/>

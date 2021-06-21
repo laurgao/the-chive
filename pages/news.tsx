@@ -25,7 +25,7 @@ const news = () => {
                 <p className="mt-4">The Onion may be America's finest news source, but The Chive is definitely Canada's.</p>
             </div>
 
-            <div className="md:flex flex-wrap gap-6">
+            <div className="md:flex flex-wrap gap-x-6 gap-y-10">
                 {(fakePost && fakePost.data) ? fakePost.data.map((post, index) => (
                     <PostItemCard post={post} key={index} wide="half"/>
                 )) : <div className="w-full"><Skeleton height={200}/></div>}
@@ -38,7 +38,7 @@ const news = () => {
                 <H1 className="text-center">News in Laura's life</H1>
                 <p className="mt-4 text-xl">Which is sent every month to an email list of 200+ subscribers... that <a className="underline transition theme-hover" href="/home#newsletter">you can join!</a></p>
             </div>
-            <div className="md:flex flex-wrap gap-6">
+            <div className="md:flex flex-wrap gap-x-6 gap-y-10 ">
                 {(news && news.data) ? news.data.map((news, index) => (
                     <>
                     <PostItemCard post={news} key={index}/>

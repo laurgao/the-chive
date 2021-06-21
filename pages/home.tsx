@@ -52,7 +52,7 @@ const home = () => {
                
         </div>
         <div className="max-w-5xl mx-auto px-4 relative z-10"> {/*  */}
-            <div className="md:flex flex-wrap gap-6 items-start justify-items-start">
+            <div className="md:flex flex-wrap gap-x-6 gap-y-10 items-start justify-items-start">
                 {(fakePost && fakePost.data) ? (
                     <>
                     <PostItemCard post={fakePost.data[1]} wide="full"/>
@@ -104,7 +104,7 @@ const home = () => {
             </div>
         </div>
         {iter == 1 ? <div className="max-w-5xl mx-auto px-4">
-            <div className="md:flex flex-wrap gap-6 items-start justify-items-start">
+            <div className="md:flex flex-wrap gap-x-6 gap-y-10 items-start justify-items-start">
                 {(posts && posts.posts) ? posts.posts.map((post, index) => (
                     <PostItemCard post={post} key={post._id} randomNumberZeroToTwo={(index) % 5}/>
                 )) : <div className="w-full"><Skeleton height={200}/></div>}

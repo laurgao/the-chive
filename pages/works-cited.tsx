@@ -31,7 +31,7 @@ const worksCited = () => {
                 {allPosts && allPosts.data && (
                     <>
                         <H2 className="mb-8 text-center">Related Posts</H2>
-                        <div className="md:flex flex-col flex-wrap gap-6 items-start justify-items-start">
+                        <div className="md:flex flex-col flex-wrap gap-x-6 gap-y-10 items-start justify-items-start">
                             {allPosts.data.slice(0, 4).map((post, index) => (
                                 <PostItemCard post={post} key={post.urlName} randomNumberZeroToTwo={index % 2}/>
                             ))}
