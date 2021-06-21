@@ -6,7 +6,7 @@ import Particles from 'react-particles-js';
 
 export default function Home() {
   return (
-    <div className="bg-gray-800 overflow-hidden text-white w-screen h-screen inset-0 absolute z-40 flex items-center ">
+    <div className="bg-gray-800 overflow-hidden text-white w-screen h-screen inset-0 absolute z-40 flex items-center " style={{backgroundImage: 'url("/bg-dim-25.png")'}}>
       <UpSEO />
       <div className="absolute w-screen h-screen">
         <Particles
@@ -44,6 +44,8 @@ export default function Home() {
                   "Canada's Finest Daily Dose of Writing",
                   "Canada's Finest News Source",
                   "Canada's Finest Literary Theory",
+                  "Canada's Finest Marxist Analysis",
+                  "Canada's Finest Feminist Critics",
                 ],
                 breakLines: false,
               }}

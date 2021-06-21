@@ -38,7 +38,7 @@ export default function PublicPost(props: {
 
     return (
         <div className="max-w-2xl mx-auto px-4">
-            {thisPost ? <UpSEO title={thisPost.title} description={thisPost.subtitle || ""}/>  : <UpSEO/> }
+            {thisPost ? <UpSEO title={thisPost.title} description={thisPost.subtitle || ""} imgUrl={thisPost.img || ""}/>  : <UpSEO/> }
             <InlineButton 
                 href={`/${type}`} className="mb-6"
             >

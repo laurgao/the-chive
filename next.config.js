@@ -1,10 +1,8 @@
 module.exports = {
     async rewrites() {
-        return [
-          {
+        return [{
             source: '/api/post',
             destination: 'https://postulate.us/api/post',
-          },
-        ]
-      },
-  };
+        }, ]
+    },
+};

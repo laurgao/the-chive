@@ -94,7 +94,7 @@ Of course, this model isn't perfect - if we take the analogy further, only explo
 Relentlessly pursue and optimize for the small things when trying to find personal success. And do the same with activism. The world is not moved in big leaps but in slow, gradual changes that accumulate over time. Focusing on the second world on a day-to-day basis more often than thinking about the dream to change the world propels you closer towards reality, and by extension, helps you be more successful in your projects, feminism, and anything you do.
 
                         `,
-                        type: "Life"
+                        type: "Social"
                     })
                 }
                 if (req.query.postName == "all" || req.query.postName == "social" || req.query.urlName=="critical-theory-from-bronx-to-cornell-2021-06-16") {
@@ -128,7 +128,7 @@ Relentlessly pursue and optimize for the small things when trying to find person
                         
                         `,
                         img: "/Panel-the-first.png",
-                        type: "Life"
+                        type: "Social"
                     })
                 }
                 if (req.query.postName == "all") {

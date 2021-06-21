@@ -9,12 +9,15 @@ export default function Loading() {
   if (typeof window !== "undefined") {
     foo = window.localStorage.getItem("foo");
   }
-  setTimeout(function(){
-    window.location.href = '/home';
-  }, 3000);
+  if (process.browser) {
+    // Client-side-only code https://stackoverflow.com/questions/55151041/window-is-not-defined-in-next-js-react-app
+    setTimeout(function(){
+      window.location.href = '/home';
+    }, 3000);
+  }
 
   return (
-    <div className="bg-gray-800 overflow-hidden text-white w-screen h-screen inset-0 absolute z-40 flex items-center ">
+    <div className="bg-gray-800 overflow-hidden text-white w-screen h-screen inset-0 absolute z-40 flex items-center " style={{backgroundImage: 'url("/bg-dim-25.png")'}}>
       <UpSEO />
       <div className="absolute w-screen h-screen">
         <Particles

@@ -7,11 +7,15 @@ export interface PostObj {
     date?: string,
     author?: string,
     img?: string,
-    type?: "News"|"Entertainment"|"Science"|"Tech"|"Life",
+    type?: "News"|"Entertainment"|"Science"|"Tech"|"Social",
     subtitle?: string,
     caption?: string,
     projectArr?: {name: String}[],
     slateBody?: {type: "p"|"img", url:string}[]
+}
+
+export interface NewsletterObj {
+    email: string; 
 }
 
 export type DatedObj<T extends {}> = T & {

@@ -22,7 +22,7 @@ const news = () => {
 
             <div className="md:flex flex-wrap gap-6">
                 {(fakePost && fakePost.data) ? fakePost.data.map((post, index) => (
-                    <PostItemCard post={post} key={index} randomNumberZeroToTwo={index % 5}/>
+                    <PostItemCard post={post} key={index} wide="half"/>
                 )) : <div className="w-full"><Skeleton height={200}/></div>}
             </div>
         </div>

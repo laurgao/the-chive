@@ -20,12 +20,12 @@ export default function UpSEO({
         images: imgUrl ? [
             { url: imgUrl }
         ] : [
-            { url: "https://postulate.us/postulate-square.png" }
+            { url: "/logo.png" }
         ],
     };
 
     let twitter = {
-        site: "@postulate",
+        site: "@laurgao",
         cardType: imgUrl ? "summary_large_image" : "summary",
     };
 
@@ -43,6 +43,7 @@ export default function UpSEO({
         <NextSeo
             title={fullTitle}
             description={description}
+            openGraph={openGraph}
             noindex={noindex}
         />
     );
