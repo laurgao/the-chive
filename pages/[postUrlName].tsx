@@ -19,6 +19,7 @@ import Parser from "html-react-parser";
 import H2 from "../components/H2";
 import PostItemCard from "../components/PostItemCard";
 import PrimaryButton from "../components/PrimaryButton";
+import Linebreak from "../components/Linebreak";
 
 export default function PublicPost(props: {
     postUrlName: string,
@@ -93,19 +94,21 @@ export default function PublicPost(props: {
                             <div>{Parser(markdownConverter.makeHtml(thisPost.body))}</div>
                     )}
                 </article>
+
+                <Linebreak />
                 <div>
                     {allPosts && allPosts.data && (
                         <>
-                            <H2>Related Posts</H2>
+                            <H2 className="mb-8 text-center">Related Posts</H2>
                             <div className="md:flex flex-wrap gap-6 items-start justify-items-start">
-                                {allPosts.data.slice(0, 4).filter(post => post.urlName != postUrlName).map(post => (
+                                {allPosts.data.slice(0, 4).filter(post => post.urlName != postUrlName).map((post, index) => (
                                     <PostItemCard post={post} key={post.urlName}/>
                                 ))}
                             </div>
                         </>
                     )}
                     <div className="mt-8 w-full text-center">
-                        <p className="mb-4">If you enjoyed this article, your enjoyment is attributed to the giants I stood on. Check them out:</p>
+                        <p className="mb-8">If you enjoyed this article, your enjoyment is attributed to the giants I stood on. Check them out:</p>
                         <PrimaryButton className="mx-auto" href="/works-cited">Works Cited</PrimaryButton>
                     </div>
                 </div>
