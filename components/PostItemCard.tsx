@@ -5,9 +5,6 @@ import {format} from "date-fns";
 import React, { useState } from "react";
 import Link from "next/link";
 import H2 from "./H2";
-import showdown from "showdown";
-import showdownHtmlEscape from "showdown-htmlescape";
-import Parser from "html-react-parser";
 
 export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = null}: {post: DatedObj<any> /*Newsobj or PostObj*/, randomNumberZeroToTwo?: number, wide?: "full"|"half"|"fuller"|null}) {
     // const randomNumberZeroToThree = useState<number>(Math.floor(Math.random() * 4));
@@ -20,17 +17,14 @@ export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = nu
     const [img, setImg] = useState<string>(
         post.img ? post.img : 
         (isPostulate && post.slateBody.filter(p => (p.type == "img"))[0]) ? post.slateBody.filter(p => (p.type == "img"))[0].url : 
-        (isPostulate && post.body.includes("![](https://")) ? "" :
+        (isPostulate && post.slateBody.filter(chunk => (
+            chunk.children[0].type == "img"
+        ))[0]) ? post.slateBody.filter(chunk => (
+            chunk.children[0].type == "img"
+        ))[0].children[0].url :
         ""
     );
     const [isNews, setIsNews] = useState<boolean>(post.month ? true : false)
-
-    const markdownConverter = new showdown.Converter({
-        strikethrough: true,
-        tasklists: true,
-        tables: true,
-        extensions: [showdownHtmlEscape],
-    });
 
     return (
         <div className={`w-full md:${wide == "fuller" ? "w-full" : wide == "full" ? "max-w-60" : wide == "half" ? "max-w-40" : orientation == "flex-col" ? `${/*md:*/"ch-w-30"}` : "flex-grow"} border border-transparent hover:border-gray-200 rounded-lg p-4 transition`}>
@@ -44,23 +38,27 @@ export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = nu
                         <p className="font-bold text-sm uppercase btm-gray-400">{isNews ? post.month : isPostulate ? post.projectArr[0].name: post.type ? post.type : "Post"}</p>
                         
                             <H2 className="font-medium my-2 content">{ellipsize(post.title, 200)}</H2>
-                                
-                            {!isNews && 
-                                <>
-                                <p className="btm-gray-400">{readingTime(post.body + post.body2 || post.body).text}</p>
-                                <p className="btm-gray-500">
-                                    {format(new Date(post.createdAt || post.date), "MMM dd yyyy")}
-                                </p>
-                                </>
-                            }
+
                             {(isNews || post.body) &&
-                                <p className="btm-gray-400 mt-4">{ellipsize(
+                                <p className="btm-gray-400 mb-4">{ellipsize(
+                                    // loop through array of slateBodys and loop through each child within each slatebody.
                                     isPostulate ? (post && post.slateBody) && post.slateBody.filter(chunk => chunk.type == "p").map(
                                         chunk => chunk.children.map(
                                         c => c.type == "a" ? c.children[0].text : c.text
                                     ).join(" ")).join(" ") :
-                                    isNews ? post.description : post.body
-                                , 200)}</p>
+
+                                    isNews ? post.description : 
+                                    post.body
+                                , 200)}</p>  // wide == "fuller" ? 400 : 
+                            }
+                            
+                            {!isNews && 
+                                <>
+                                <p className="btm-gray-500">
+                                    {format(new Date(post.createdAt || post.date), "MMM dd yyyy")}
+                                </p>
+                                <p className="btm-gray-400">{readingTime(post.body + post.body2 || post.body).text}</p>
+                                </>
                             }
                         </div>
                     </div>
