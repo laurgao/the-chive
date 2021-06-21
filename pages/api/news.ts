@@ -7,7 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     switch (req.method) {    
         case "GET": {
             try {    
-                
                 let thisObject;
                 if (!(req.query.title || req.query.description || req.query.img || req.query.month || req.query.urlName)) {
                     

@@ -13,6 +13,8 @@ import { fetcher } from "../utils/utils";
 const news = () => {
     const {data: fakePost, error: fakePostError}: SWRResponse<{ data: DatedObj<PostObj>[] }, any> = useSWR(`/api/fakepost?postName=news`, fetcher);
     const {data: news, error: newsError}: SWRResponse<{ data: DatedObj<NewsObj>[] }, any> = useSWR(`/api/news`, fetcher);
+    console.log(news)
+    console.log(newsError)
 
     return (
         <div className="max-w-5xl mx-auto px-4">
