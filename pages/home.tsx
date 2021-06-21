@@ -17,8 +17,8 @@ const home = () => {
             <div className="md:flex flex-wrap gap-6 items-start justify-items-start">
                 {(fakePost && fakePost.data) ? (
                     <>
-                    <PostItemCard post={fakePost.data[0]} wide={true}/>
-                    <PostItemCard post={fakePost.data[1]}/>
+                    <PostItemCard post={fakePost.data[1]} wide={true}/>
+                    <PostItemCard post={fakePost.data[0]}/>
                     <PostItemCard post={fakePost.data[2]}/>
                     <PostItemCard post={fakePost.data[3]} wide={true}/>
                     {fakePost.data.slice(4, fakePost.data.length-1).map((post, index) => (

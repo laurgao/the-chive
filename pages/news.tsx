@@ -17,7 +17,7 @@ const news = () => {
             <InlineButton href="/home" className="mb-6"><><FaArrowLeft />Back to Home</></InlineButton>
             <div className="text-center mb-8">
                 <H1>Canada's Finest News</H1>
-                <p>The Onion may be America's finest news source, but The Chive is Canada's.</p>
+                <p>The Onion may be America's finest news source, but The Chive is definitely Canada's.</p>
             </div>
 
             <div className="md:flex flex-wrap gap-6">
