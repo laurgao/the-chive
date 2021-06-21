@@ -18,6 +18,12 @@ export interface NewsletterObj {
     email: string; 
 }
 
+export interface AccountObj {
+    email: string,
+    name: string,
+    image: string,
+}
+
 export type DatedObj<T extends {}> = T & {
     _id?: string,
     createdAt?: string, // ISO date

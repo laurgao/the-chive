@@ -36,7 +36,14 @@ const Navbar = () => {
                         Social
                     </a>
                 </Link>
+                <div className="mr-2">
+                    <MoreMenu className="md:hidden">
+                        <MoreMenuItem text="News" icon={<BiNews/>} href="/news" />
+                        <MoreMenuItem text="Social" icon={<BsLightning/>} href="/social" />
+                    </MoreMenu>
+                </div>
                 <PrimaryButton href="/home#newsletter">Sign up for newsletter</PrimaryButton>
+            
 
                 {/* <Link href="/science">
                     <a className="hidden md:flex items-center opacity-50 hover:opacity-100 mr-10">

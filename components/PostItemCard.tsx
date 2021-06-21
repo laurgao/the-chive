@@ -24,12 +24,12 @@ export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = nu
     );
 
     return (
-        <div className={`${wide == "fuller" ? "w-full" : wide == "full" ? "max-w-60" : wide == "half" ? "max-w-40" : orientation == "flex-col" ? `${/*md:*/"ch-w-30"}` : "flex-grow"} border border-transparent hover:border-gray-200 rounded-lg p-4 transition`}>
+        <div className={`w-full md:${wide == "fuller" ? "w-full" : wide == "full" ? "max-w-60" : wide == "half" ? "max-w-40" : orientation == "flex-col" ? `${/*md:*/"ch-w-30"}` : "flex-grow"} border border-transparent hover:border-gray-200 rounded-lg p-4 transition`}>
             <Link href={post.urlName.substr(0, 5) == "https"  ? post.urlName : isPostulate ? `https://postulate.us/@laura/p/${post.urlName}` : `/${post.urlName}`}>
                 <a >
-                    <div className={`flex ${orientation} w-full h-full`} style={{borderTopColor: "#006b3a", borderLeftColor: "transparent", borderBottomColor: "transparent", borderRightColor: "transparent", borderWidth: "5px"}} >
+                    <div className={`flex flex-col md:${orientation} w-full h-full`} style={{borderTopColor: "#006b3a", borderLeftColor: "transparent", borderBottomColor: "transparent", borderRightColor: "transparent", borderWidth: "5px"}} >
                         {img && <div >
-                            <img src={img} className={`${orientation == "flex-col" ? "w-full" : "md:max-w-xs"} ${randomNumberZeroToTwo == 0 ? "mr-10" : randomNumberZeroToTwo == 1 ? "ml-10" : "mb-6 "}`}/>
+                            <img src={img} className={`${orientation == "flex-col" ? "w-full" : "w-full md:max-w-xs"} ${randomNumberZeroToTwo == 0 ? "mr-10" : randomNumberZeroToTwo == 1 ? "ml-10" : "mb-6 "}`}/>
                         </div>}
                         <div className="text-sm mt-6">
                         <p className="font-bold text-sm uppercase btm-gray-400">{isPostulate ? post.projectArr[0].name: post.type ? post.type : "Post"}</p>
