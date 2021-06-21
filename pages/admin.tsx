@@ -19,7 +19,6 @@ const admin = () => {
     const [iter, setIter] = useState<number>(0);
     const {data: news, error: newsError}: SWRResponse<{ data: DatedObj<NewsObj>[] }, any> = useSWR(`/api/news?iter=${iter}`, fetcher);
     const {data: subscribers, error: subscribersError}: SWRResponse<{ data: DatedObj<NewsletterObj>[] }, any> = useSWR(`/api/newsletter?iter=${iter}`, fetcher);
-    console.log(subscribers)
 
     return (
         <div className="max-w-5xl mx-auto px-4">

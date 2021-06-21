@@ -2,32 +2,19 @@ import {NewsModel} from "../../models/news";
 import dbConnect from "../../utils/dbConnect";
 import {NextApiRequest, NextApiResponse} from "next";
 import {getSession} from "next-auth/client";
+import { cleanForJSON } from "../../utils/utils";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     switch (req.method) {    
         case "GET": {
             try {    
-                let thisObject;
-                if (!(req.query.title || req.query.description || req.query.img || req.query.month || req.query.urlName)) {
-                    
-                    thisObject = await NewsModel.find();                      
-                } else {
-                    let conditions = {};
+                await dbConnect();
 
-                    if (req.query.id) conditions["_id"] = req.query.id;
-                    if (req.query.title) conditions["title"] = req.query.title;
-                    if (req.query.description) conditions["description"] = req.query.description;
-                    if (req.query.img) conditions["img"] = req.query.img;
-                    if (req.query.month) conditions["month"] = req.query.month;
-                    if (req.query.urlName) conditions["urlName"] = req.query.urlName;
-                    
-                            
-                    await dbConnect();   
-                }
+                const thisObject = await NewsModel.find();
                 
                 if (!thisObject || !thisObject.length) return res.status(404);
                 
-                return res.status(200).json({data: thisObject});
+                return res.status(200).json({data: cleanForJSON(thisObject)});
             } catch (e) {
                 return res.status(500).json({message: e});                        
             }
