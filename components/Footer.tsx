@@ -20,7 +20,6 @@ export default function Footer() {
                         The Chive © 2021.
                     </p>
                 </div>
-
             </div>
         </>
     );

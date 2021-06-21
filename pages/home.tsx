@@ -16,6 +16,7 @@ const home = () => {
     const {data: featuredPosts, error: featuredPostsError}: SWRResponse<{ posts: DatedObj<PostObj>[], count: number }, any> = useSWR(`/api/post?userId=6042905542b21b000856ec87&featured=true`);
     const {data: fakePost, error: fakePostError}: SWRResponse<{ data: DatedObj<PostObj>[] }, any> = useSWR(`/api/fakepost?postName=all`, fetcher);
     // iter = Math.floor(posts.count/10) + 1
+    console.log(featuredPosts)
 
     const [error, setError] = useState<any>(null);
     const [invalidEmail, setInvalidEmail] = useState<boolean>(false);

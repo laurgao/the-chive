@@ -6,9 +6,10 @@ import Particles from 'react-particles-js';
 
 export default function Home() {
   return (
-    <div className="bg-gray-800 overflow-hidden text-white w-screen h-screen inset-0 absolute z-40 flex items-center " style={{backgroundImage: 'url("/bg-dim-25.png")'}}>
+    <div className="bg-primary overflow-hidden text-white w-screen h-screen inset-0 absolute z-40 " style={{backgroundImage: 'url("/bg-dim-25.png")'}}>
+    <div className="flex items-center w-screen h-screen " >
       <UpSEO />
-      <div className="absolute w-screen h-screen">
+      <div className="absolute h-full inset-0">
         <Particles
       params={{
         "particles": {
@@ -41,11 +42,11 @@ export default function Home() {
                 speed: 200,
                 loop:true,
                 strings: [
-                  "Canada's Finest Daily Dose of Writing",
-                  "Canada's Finest News Source",
-                  "Canada's Finest Literary Theory",
-                  "Canada's Finest Marxist Analysis",
-                  "Canada's Finest Feminist Critics",
+                  "Canada's Finest Daily Dose of Writing *",
+                  "Canada's Finest News Source *",
+                  "Canada's Finest Literary Theory *",
+                  "Canada's Finest Marxist Analysis *",
+                  "Canada's Finest Feminist Critics *",
                 ],
                 breakLines: false,
               }}
@@ -62,6 +63,12 @@ export default function Home() {
         </div>
       </div>
       
+                
+    </div>
+    
+    <p className="text-xs opacity-50 hover:opacity-70 transition md:max-w-sm md:ml-auto text-right absolute right-4 bottom-4 z-50">
+        *Disclaimer: The Chive is not Canada's finest writing, nor does it contain fine writing at all for that matter. This line is merely present as a a parody of The Onion, a satirical news site self-described as "America's Finest News Source."
+    </p>
     </div>
   )
 }

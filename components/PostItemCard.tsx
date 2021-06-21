@@ -5,6 +5,9 @@ import {format} from "date-fns";
 import React, { useState } from "react";
 import Link from "next/link";
 import H2 from "./H2";
+import showdown from "showdown";
+import showdownHtmlEscape from "showdown-htmlescape";
+import Parser from "html-react-parser";
 
 export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = null}: {post: DatedObj<any> /*Newsobj or PostObj*/, randomNumberZeroToTwo?: number, wide?: "full"|"half"|"fuller"|null}) {
     // const randomNumberZeroToThree = useState<number>(Math.floor(Math.random() * 4));
@@ -21,6 +24,13 @@ export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = nu
         ""
     );
     const [isNews, setIsNews] = useState<boolean>(post.month ? true : false)
+
+    const markdownConverter = new showdown.Converter({
+        strikethrough: true,
+        tasklists: true,
+        tables: true,
+        extensions: [showdownHtmlEscape],
+    });
 
     return (
         <div className={`w-full md:${wide == "fuller" ? "w-full" : wide == "full" ? "max-w-60" : wide == "half" ? "max-w-40" : orientation == "flex-col" ? `${/*md:*/"ch-w-30"}` : "flex-grow"} border border-transparent hover:border-gray-200 rounded-lg p-4 transition`}>
@@ -44,7 +54,13 @@ export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = nu
                                 </>
                             }
                             {(isNews || post.body) &&
-                                <p className="btm-gray-400 mt-4">{ellipsize(post.body || post.description, 200)}</p>
+                                <p className="btm-gray-400 mt-4">{ellipsize(
+                                    isPostulate ? (post && post.slateBody) && post.slateBody.filter(chunk => chunk.type == "p").map(
+                                        chunk => chunk.children.map(
+                                        c => c.type == "a" ? c.children[0].text : c.text
+                                    ).join(" ")).join(" ") :
+                                    isNews ? post.description : post.body
+                                , 200)}</p>
                             }
                         </div>
                     </div>
