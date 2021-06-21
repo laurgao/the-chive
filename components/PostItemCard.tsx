@@ -6,12 +6,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import H2 from "./H2";
 
-
-
 export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = null}: {post: DatedObj<any> /*Newsobj or PostObj*/, randomNumberZeroToTwo?: number, wide?: "full"|"half"|"fuller"|null}) {
     // const randomNumberZeroToThree = useState<number>(Math.floor(Math.random() * 4));
     const [orientation, setOrientation] = useState<"flex-row"|"flex-row-reverse"|"flex-col">(
-        wide ? "flex-col" :
+        (wide == "full" || wide == "fuller" || wide == "half") ? "flex-col" :
         randomNumberZeroToTwo == 0 ? "flex-row" : 
         randomNumberZeroToTwo == 1 ? "flex-row-reverse" : "flex-col"
     );
@@ -30,9 +28,9 @@ export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = nu
                 <a >
                     <div className={`flex flex-col md:${orientation} w-full h-full`} style={{borderTopColor: "#006b3a", borderLeftColor: "transparent", borderBottomColor: "transparent", borderRightColor: "transparent", borderWidth: "5px"}} >
                         {img && <div >
-                            <img src={img} className={`${orientation == "flex-col" ? "w-full" : "w-full md:max-w-xs"} ${randomNumberZeroToTwo == 0 ? "mr-10" : randomNumberZeroToTwo == 1 ? "ml-10" : "mb-6 "}`}/>
+                            <img src={img} className={`${orientation == "flex-col" ? "w-full" : "w-full md:w-96" /* md:max-w-xs */} `}/>
                         </div>}
-                        <div className="text-sm mt-6">
+                        <div className={`text-sm mt-4 ${img && orientation == "flex-row" ? "ml-10" : orientation == "flex-row-reverse" ? "mr-10" : "mt-6 "}`}>
                         <p className="font-bold text-sm uppercase btm-gray-400">{isNews ? post.month : isPostulate ? post.projectArr[0].name: post.type ? post.type : "Post"}</p>
                         
                             <H2 className="font-medium my-2 content">{ellipsize(post.title, 200)}</H2>

@@ -97,7 +97,7 @@ const home = () => {
             </div>
         </div>
         <div className="max-w-5xl mx-auto px-4">
-            <div className="md:flex flex-wrap gap-6 items-start justify-items-start">
+            <div className="md:flex flex-wrap gap-x-6 gap-y-10 items-start justify-items-start">
                 {(featuredPosts && featuredPosts.posts) ? featuredPosts.posts.map((post, index) => (
                     <PostItemCard post={post} key={post._id}/>
                 )) : <div className="w-full"><Skeleton height={200}/></div>}

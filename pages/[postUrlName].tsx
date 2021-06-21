@@ -100,14 +100,14 @@ export default function PublicPost(props: {
                     {allPosts && allPosts.data && (
                         <>
                             <H2 className="mb-8 text-center">Related Posts</H2>
-                            <div className="md:flex flex-wrap gap-6 items-start justify-items-start">
+                            <div className="md:flex flex-col flex-wrap gap-6 items-start justify-items-start">
                                 {allPosts.data.slice(0, 4).filter(post => post.urlName != postUrlName).map((post, index) => (
-                                    <PostItemCard post={post} key={post.urlName}/>
+                                    <PostItemCard post={post} key={post.urlName} randomNumberZeroToTwo={index % 2}/>
                                 ))}
                             </div>
                         </>
                     )}
-                    <div className="mt-8 w-full text-center">
+                    <div className="mt-16 w-full text-center">
                         <p className="mb-8">If you enjoyed this article, your enjoyment is attributed to the giants I stood on. Check them out:</p>
                         <PrimaryButton className="mx-auto" href="/works-cited">Works Cited</PrimaryButton>
                     </div>
