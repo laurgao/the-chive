@@ -1,14 +1,14 @@
-import useSWR, { SWRResponse } from "swr";
-import { DatedObj, PostObj } from "../utils/types";
-import { fetcher } from "../utils/utils";
-import PostItemCard from "../components/PostItemCard";
-import Skeleton from "react-loading-skeleton";
-import UpSEO from "../components/UpSeo";
-import { useState } from "react";
 import axios from "axios";
-import PrimaryButton from "../components/PrimaryButton";
+import { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import useSWR, { SWRResponse } from "swr";
 import H1 from "../components/H1";
 import InlineButton from "../components/InlineButton";
+import PostItemCard from "../components/PostItemCard";
+import PrimaryButton from "../components/PrimaryButton";
+import UpSEO from "../components/UpSeo";
+import { DatedObj, PostObj } from "../utils/types";
+import { fetcher } from "../utils/utils";
 
 const home = () => {
     const [iter, setIter] = useState<number>(0);
@@ -40,7 +40,7 @@ const home = () => {
     return (
         <>
         <UpSEO />
-        <div className="w-full" id="waitlist">
+        <div className="w-full">
             <div className="my-16 text-white sm:text-center relative px-4 mx-auto z-10"> 
                 <H1 className="text-4xl sm:text-5xl">
                     The Chive
@@ -65,7 +65,7 @@ const home = () => {
                 ) : <div className="w-full"><Skeleton height={200} className="opacity-50"/></div>}
             </div>
         </div>
-        <div className="w-full bg-primary my-16 text-white" id="newsletter">
+        <div className="w-full bg-primary my-16 text-white" id="newsletter" style={{"scrollMarginTop": 80}}>
             <div className={containerClasses}>
                 <div className="md:flex items-center">
                     <h2 className="flex-shrink-0 mr-8 mb-4 md:mb-0"><b>Like what you see?</b><br/>Sign up for my monthly email list.<br/><p className="mt-2 text-sm opacity-70">Or, you can <a className="underline transition theme-hover" href="/news#newsletter">read it first.</a></p></h2>

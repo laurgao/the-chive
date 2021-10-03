@@ -73,7 +73,7 @@ const NewsModal = ({isOpen, setIsOpen, news, iter, setIter, setNews} : {
             value={month}
             setValue={setMonth}
         />
-        <p className="text-sm btm-gray-400">This does ask you to choose a date but the date will be ignored. Just the month and year matters.</p>
+        <p className="text-sm btm-gray-400">Although this input field does ask you to choose a date, the date will be ignored. Only the month and year will be displayed.</p>
         <Input
             name="description"
             type="textarea"

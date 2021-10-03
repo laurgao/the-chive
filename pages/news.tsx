@@ -30,7 +30,7 @@ const news = () => {
 
             <Linebreak />
             
-            <div className="text-center my-16" id="newsletter" style={{"scrollMarginTop": 50}}>
+            <div className="text-center my-16" id="newsletter" style={{"scrollMarginTop": 100}}>
                 <p className="btm-gray-500 mb-2">Now, here's some</p>
                 <H1 className="text-center">News in Laura's life</H1>
                 <p className="mt-4 text-xl">Which is sent every month to an email list of 200+ subscribers... that <a className="underline transition theme-hover" href="/home#newsletter">you can join!</a></p>
