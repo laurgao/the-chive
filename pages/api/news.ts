@@ -64,7 +64,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 return res.status(500).json({message: e});            
             }
         }
-        
+        case "DELETE": {
+            try {
+                await dbConnect();
+                if (!(req.body.id)) return res.status(406).send("ID must be provided.");
+
+                const deletedNews = await NewsModel.findOne({_id: req.body.id});
+                if (!deletedNews) return res.status(404).send("No newsletter with that ID.")
+
+                await deletedNews.delete();
+                return res.status(200).json({message: "Object deleted."});
+
+
+            } catch (e) {return res.status(500).json({message: e})}
+        }
         
         default:
             return res.status(405);
