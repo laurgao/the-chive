@@ -1,25 +1,39 @@
-import React, { useState } from "react";
-import axios from 'axios';
-import H2 from './H2';
-import UpModal from './UpModal';
-import PrimaryButton from './PrimaryButton';
-import { DatedObj, NewsObj } from '../utils/types';
-import Input from './Input';
+import axios from "axios";
+import { format } from "date-fns";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { DatedObj, NewsObj } from "../utils/types";
+import H2 from "./H2";
+import Input from "./Input";
+import PrimaryButton from "./PrimaryButton";
+import UpModal from "./UpModal";
 
-const NewsModal = ({isOpen, setIsOpen, news, iter, setIter} : {
+const NewsModal = ({isOpen, setIsOpen, news, iter, setIter, setNews} : {
     isOpen: boolean,
     setIsOpen: any,
     news?: DatedObj<NewsObj>,
     iter: number,
     setIter: any,
+    setNews?: Dispatch<SetStateAction<DatedObj<NewsObj>>>
 }) => {
-    
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [title, setTitle] = useState<string>(news ? news.title : "");
     const [urlName, setUrlName] = useState<string>(news ? news.urlName : "");
     const [description, setDescription] = useState<string>(news ? news.description : "");
     const [img, setImg] = useState<string>(news ? news.img : "");
-    const [month, setMonth] = useState<string>(news ? news.month : "");
+    const [month, setMonth] = useState<string>(news ? news.month : format(new Date(), "yyyy-MM-dd"));
+
+
+    function customSetIsOpen(v: boolean) {
+        if (!v) {
+            setTitle("");
+            setUrlName("");
+            setDescription("");
+            setImg("");
+            setMonth(format(new Date(), "yyyy-MM-dd"))
+            setNews(null);
+            setIsOpen(false);
+        }
+    }
 
     function handleAddNews() {
         setIsLoading(true);
@@ -32,24 +46,18 @@ const NewsModal = ({isOpen, setIsOpen, news, iter, setIter} : {
             month: month,
             id: news && news._id
         }).then(res => {
-            if (res.data.error) {
-                setIsLoading(false);
-                console.log(`Error: ${res.data.error}`);
-            } else {
-                setIsLoading(false);
+            if (res.data.error) console.log(`Error: ${res.data.error}`);
+            else {
                 setIter(iter + 1);
-                setIsOpen(false);
+                customSetIsOpen(false);
                 // router.push(`/projects/${projectId}/${res.data.id[0]}`); // user page
                 console.log(res.data);
             }
-        }).catch(e => {
-            setIsLoading(false);
-            console.log(e);
-        });
+        }).catch(e => console.log(e)).finally(() => setIsLoading(false));
     }
     return (
-        <UpModal isOpen={isOpen} setIsOpen={setIsOpen} wide={true}>
-        <H2>{news ? "Edit User" : "New User"}</H2>
+        <UpModal isOpen={isOpen} setIsOpen={customSetIsOpen} wide={true}>
+        <H2>{news ? "Edit newsletter" : "New newsletter"}</H2>
         <Input
             name="Name"
             type="text"
@@ -60,14 +68,15 @@ const NewsModal = ({isOpen, setIsOpen, news, iter, setIter} : {
         />
         <Input
             name="month"
-            type="text"
+            type="date"
             placeholder="Samson Zhang"
             value={month}
             setValue={setMonth}
         />
+        <p className="text-sm btm-gray-400">This does ask you to choose a date but the date will be ignored. Just the month and year matters.</p>
         <Input
             name="description"
-            type="text"
+            type="textarea"
             placeholder="Samson Zhang"
             value={description}
             setValue={setDescription}
@@ -80,7 +89,7 @@ const NewsModal = ({isOpen, setIsOpen, news, iter, setIter} : {
             setValue={setUrlName}
         />
         <Input
-            name="img"
+            name="Image URL"
             type="text"
             placeholder="Samson Zhang"
             value={img}

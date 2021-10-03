@@ -2,7 +2,6 @@ import { FaArrowLeft } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
 import useSWR, { SWRResponse } from "swr";
 import H1 from "../components/H1";
-import H2 from "../components/H2";
 import InlineButton from "../components/InlineButton";
 import Linebreak from "../components/Linebreak";
 import PostItemCard from "../components/PostItemCard";
@@ -13,8 +12,6 @@ import { fetcher } from "../utils/utils";
 const news = () => {
     const {data: fakePost, error: fakePostError}: SWRResponse<{ data: DatedObj<PostObj>[] }, any> = useSWR(`/api/fakepost?postName=news`, fetcher);
     const {data: news, error: newsError}: SWRResponse<{ data: DatedObj<NewsObj>[] }, any> = useSWR("/api/news", fetcher);
-    console.log(news)
-    console.log(newsError)
 
     return (
         <div className="max-w-5xl mx-auto px-4">
@@ -33,7 +30,7 @@ const news = () => {
 
             <Linebreak />
             
-            <div className="text-center my-16" id="newsletter">
+            <div className="text-center my-16" id="newsletter" style={{"scrollMarginTop": 50}}>
                 <p className="btm-gray-500 mb-2">Now, here's some</p>
                 <H1 className="text-center">News in Laura's life</H1>
                 <p className="mt-4 text-xl">Which is sent every month to an email list of 200+ subscribers... that <a className="underline transition theme-hover" href="/home#newsletter">you can join!</a></p>

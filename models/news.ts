@@ -7,7 +7,7 @@ const NewsSchema = new mongoose.Schema({
 	title: { required: true, type: String }, 
 	description: { required: true, type: String }, 
 	img: { required: true, type: String }, 
-	month: { required: true, type: String }, // format: "Jan 2020"
+	month: { required: true, type: String },
 	urlName: { required: true, type: String }, 
 }, {
 	timestamps: true,

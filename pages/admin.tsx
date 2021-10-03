@@ -1,21 +1,24 @@
-import { getSession } from "next-auth/client";
 import { GetServerSideProps } from "next";
-import NewsModal from "../components/NewsModal";
+import { getSession } from "next-auth/client";
 import { useState } from "react";
-import useSWR, { SWRResponse } from "swr";
-import { DatedObj, NewsletterObj, NewsObj } from "../utils/types";
-import { fetcher } from "../utils/utils";
-import PostItemCard from "../components/PostItemCard";
+import { ContextMenu, ContextMenuTrigger, MenuItem } from "react-contextmenu";
+import { FaPlus } from "react-icons/fa";
+import { FiEdit2 } from "react-icons/fi";
 import Skeleton from "react-loading-skeleton";
-import PrimaryButton from "../components/PrimaryButton";
+import useSWR, { SWRResponse } from "swr";
+import H1 from "../components/H1";
 import H2 from "../components/H2";
 import Linebreak from "../components/Linebreak";
+import NewsModal from "../components/NewsModal";
+import PostItemCard from "../components/PostItemCard";
+import PrimaryButton from "../components/PrimaryButton";
 import UpSEO from "../components/UpSeo";
-import { FaPlus } from "react-icons/fa";
-import H1 from "../components/H1";
+import { DatedObj, NewsletterObj, NewsObj } from "../utils/types";
+import { fetcher } from "../utils/utils";
 
 const admin = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [editNews, setEditNews] = useState<DatedObj<NewsObj>>(null);
     const [iter, setIter] = useState<number>(0);
     const {data: news, error: newsError}: SWRResponse<{ data: DatedObj<NewsObj>[] }, any> = useSWR(`/api/news?iter=${iter}`, fetcher);
     const {data: subscribers, error: subscribersError}: SWRResponse<{ data: DatedObj<NewsletterObj>[] }, any> = useSWR(`/api/newsletter?iter=${iter}`, fetcher);
@@ -28,15 +31,15 @@ const admin = () => {
                 <H1>Hi Laura!</H1>
                 <PrimaryButton className="ml-auto" onClick={() => setIsOpen(true)}><FaPlus /><span className="ml-2">Add a newsletter</span></PrimaryButton>
             </div>
-            <NewsModal 
+            {isOpen && <NewsModal 
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
                 iter={iter}
                 setIter={setIter}
-            />
+                news={editNews}
+                setNews={setEditNews}
+            />}
 
-
-            <Linebreak />
             <H2>Your subscribers:</H2>
             <div>
                 {(subscribers && subscribers.data) ?
@@ -48,11 +51,22 @@ const admin = () => {
 
             <Linebreak />
             <H2>Your newsletters:</H2>
-            <div className="md:flex flex-wrap gap-6">
-                {(news && news.data) ? news.data.map((news, index) => (
-                    <>
-                    <PostItemCard post={news} key={index}/>
-                    </>
+            <div className="sm:flex flex-wrap gap-6">
+                {(news && news.data) ? news.data.map(news => (
+                    <div>
+                        <ContextMenuTrigger id={news._id}>
+                            <PostItemCard post={news} key={news._id}/>
+                        </ContextMenuTrigger>
+                        
+                        <ContextMenu id={news._id} className="bg-white rounded-md shadow-lg z-10 cursor-pointer">
+                            <MenuItem onClick={() => {
+                                setEditNews(news);
+                                setIsOpen(true);
+                            }} className="flex items-center hover:bg-gray-50 p-4">
+                                <FiEdit2 /><span className="ml-2">Edit</span>
+                            </MenuItem>
+                        </ContextMenu>
+                    </div>
                 )) : <div className="w-full"><Skeleton height={200}/></div>}
             </div>
         </div>
@@ -64,6 +78,6 @@ export default admin
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const session = await getSession(context);
-    if (session.user.email !== "gaolauro@gmail.com") return {notFound: true};
+    if (!session ||session.user.email !== "gaolauro@gmail.com") return {notFound: true};
     return {props: {}};
 }

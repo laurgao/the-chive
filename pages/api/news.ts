@@ -1,7 +1,7 @@
-import {NewsModel} from "../../models/news";
+import { NextApiRequest, NextApiResponse } from "next";
+import { getSession } from "next-auth/client";
+import { NewsModel } from "../../models/news";
 import dbConnect from "../../utils/dbConnect";
-import {NextApiRequest, NextApiResponse} from "next";
-import {getSession} from "next-auth/client";
 import { cleanForJSON } from "../../utils/utils";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -10,11 +10,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             try {    
                 await dbConnect();
 
-                const thisObject = await NewsModel.find();
+                const thisObject = await NewsModel.find()
                 
                 if (!thisObject || !thisObject.length) return res.status(404);
                 
-                return res.status(200).json({data: cleanForJSON(thisObject)});
+                const sortedObj = thisObject.sort((a, b) => (new Date(b.month).getTime() - new Date(a.month).getTime()));
+                return res.status(200).json({data: cleanForJSON(sortedObj)});
             } catch (e) {
                 return res.status(500).json({message: e});                        
             }

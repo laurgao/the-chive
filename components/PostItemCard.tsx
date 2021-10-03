@@ -1,9 +1,9 @@
-import {DatedObj, NewsObj, PostObj} from "../utils/types";
+import { format } from "date-fns";
 import ellipsize from "ellipsize";
-import readingTime from "reading-time";
-import {format} from "date-fns";
-import React, { useState } from "react";
 import Link from "next/link";
+import React, { useState } from "react";
+import readingTime from "reading-time";
+import { DatedObj } from "../utils/types";
 import H2 from "./H2";
 
 export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = null}: {post: DatedObj<any> /*Newsobj or PostObj*/, randomNumberZeroToTwo?: number, wide?: "full"|"half"|"fuller"|null}) {
@@ -24,7 +24,7 @@ export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = nu
         ))[0].children[0].url :
         ""
     );
-    const [isNews, setIsNews] = useState<boolean>(post.month ? true : false)
+    const isNews = post.month ? true : false
 
     return (
         <div className={`w-full md:${wide == "fuller" ? "w-full" : wide == "full" ? "max-w-60" : wide == "half" ? "max-w-40" : orientation == "flex-col" ? `${/*md:*/"ch-w-30"}` : "flex-grow"} border border-transparent hover:border-gray-200 rounded-lg p-4 transition`}>
@@ -35,7 +35,7 @@ export default function PostItemCard({post, randomNumberZeroToTwo = 2, wide = nu
                             <img src={img} className={`${orientation == "flex-col" ? "w-full" : "w-full md:w-96" /* md:max-w-xs */} `}/>
                         </div>}
                         <div className={`text-sm mt-4 ${img && orientation == "flex-row" ? "ml-10" : orientation == "flex-row-reverse" ? "mr-10" : "mt-6 "}`}>
-                        <p className="font-bold text-sm uppercase btm-gray-400">{isNews ? post.month : isPostulate ? post.projectArr[0].name: post.type ? post.type : "Post"}</p>
+                        <p className="font-bold text-sm uppercase btm-gray-400">{isNews ? format(new Date(post.month), "MMM yyyy") : isPostulate ? post.projectArr[0].name: post.type ? post.type : "Post"}</p>
                         
                             <H2 className="font-medium my-2 content">{ellipsize(post.title, 200)}</H2>
 
